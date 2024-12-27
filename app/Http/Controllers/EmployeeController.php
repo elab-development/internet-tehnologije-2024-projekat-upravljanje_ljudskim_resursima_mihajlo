@@ -34,7 +34,7 @@ class EmployeeController extends Controller
             'name' => 'required|string|max: 100',
             'last_name' => 'required|string|max: 100',
             'phone_number' => 'required|string|max: 11',
-            'mail'=> 'required|string|max:255|email|unique:users',
+            'mail' => 'required|string|email|max:255|unique:employees',
             'position' => 'required|string|max: 100',
         ]);
 
