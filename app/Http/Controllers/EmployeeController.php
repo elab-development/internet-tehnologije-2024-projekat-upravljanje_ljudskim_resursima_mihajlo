@@ -82,7 +82,7 @@ class EmployeeController extends Controller
         }
 
         //kreiranje novog zaposlenog
-        $employee= Employee::create([
+        $employee -> update([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
