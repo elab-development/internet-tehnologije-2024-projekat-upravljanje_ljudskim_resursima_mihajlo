@@ -21,8 +21,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('employees', EmployeeController::class);
     Route::get('employees/{id}', [EmployeeController::class, 'show']);
     Route::post('employees/search', [EmployeeController::class, 'search']);
-    
+  
     Route::resource('departments', DepartmentController::class);
+
     Route::resource('projects', ProjectController::class);
 
 });
