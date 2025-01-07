@@ -115,4 +115,24 @@ class EmployeeController extends Controller
 
         return response()->json($employees);
     }
+ 
+    //dodeljivanje projekta zapsolenom
+    public function assignProject(Request $request, $employeeId)
+    {
+        //nalazimo zaposlenog
+        $employee = Employee::find($employeeId);
+        if (!$employee) {
+            return response()->json(['error' => 'Employee not found'], 400);
+        }
+
+        //validacija da li projekat postoji
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+        ]);
+
+        //povezivanje zaposlenog i projekta
+        $employee->projects()->attach($request->project_id);
+
+        return response()->json(['message' => 'Uspesna dodela projekta']);
+    }
 }
