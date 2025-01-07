@@ -135,4 +135,19 @@ class EmployeeController extends Controller
 
         return response()->json(['message' => 'Uspesna dodela projekta']);
     }
+
+
+    public function projects($id)
+    {
+        $employee = Employee::find($id);
+        if (!$employee) {
+            return response()->json(['error' => 'Employee not found'], 400);
+        }
+
+        $projects = $employee->projects;
+
+        return response()->json($projects);
+    }
+
+
 }
