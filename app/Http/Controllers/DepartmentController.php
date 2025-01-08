@@ -73,4 +73,16 @@ class DepartmentController extends Controller
 
         return response()->json(['message' => 'Uspesno izbrisan']);
     }
+
+    public function employeeCount($id)
+    {
+        $department = Department::find($id);
+        if (!$department) {
+            return response()->json(['error' => 'Department not found'], 400);
+        }
+
+        $count = $department->employees()->count(); 
+
+        return response()->json(['employee_count' => $count]);
+    }
 }
