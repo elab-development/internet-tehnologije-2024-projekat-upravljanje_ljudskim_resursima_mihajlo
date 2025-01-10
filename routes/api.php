@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
 
 
 Route::post('login', [AuthController::class, 'login']);
@@ -14,6 +15,18 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::put('users/{id}/role', [UserController::class, 'updateRole']);
+});
+
+Route::middleware(['auth:sanctum', 'role:radnik'])->group(function () {
+    
+});
+
+Route::middleware(['auth:sanctum', 'role:manager'])->group(function () {
+    
 });
 
 Route::middleware('auth:sanctum')->group(function () {

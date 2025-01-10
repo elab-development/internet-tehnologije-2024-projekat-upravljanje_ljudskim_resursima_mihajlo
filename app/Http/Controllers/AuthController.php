@@ -32,6 +32,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
         $token = $user->createToken('auth_token')->plainTextToken;
         
@@ -77,7 +78,7 @@ class AuthController extends Controller
             $token->delete();
         });
 
-        return response()->json(['message' => 'Ispesno ste se izlogovali']);
+        return response()->json(['message' => 'Uspesno ste se izlogovali']);
     }
 
 }
